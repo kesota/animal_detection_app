@@ -1,5 +1,7 @@
 
 
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,7 @@ class NewCameraView extends StatefulWidget{
 class _NewCameraState extends State<NewCameraView>{
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
-  late XFile image;
+  XFile image = XFile('');
 
   @override
   void initState(){
@@ -34,39 +36,58 @@ class _NewCameraState extends State<NewCameraView>{
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:Column(
         children: [
-          Container(
-              child: FutureBuilder<void>(
-                  future: _initializeControllerFuture,
-                  builder:  (BuildContext context, snapshot){
-                    if (snapshot.connectionState == ConnectionState.done){
-                      return CameraPreview(_controller);
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  }
-              )
+          FutureBuilder<void>(
+              future: _initializeControllerFuture,
+              builder:  (BuildContext context, snapshot){
+                if (snapshot.connectionState == ConnectionState.done){
+                  return Column(
+                      children:[
+                        const Padding(padding: EdgeInsets.all(40),),
+                        CameraPreview(_controller),
+                   ]);
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              }
           ),
           FloatingActionButton(onPressed: ()async{
             try{
               await _initializeControllerFuture;
               image = await _controller.takePicture();
               print('Successfully Captured');
-              _controller.initialize();
+
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>DisplayPicView(image.path)));
             }catch(error){
               print(error);
             }
           }, 
             child: const Icon(Icons.camera_alt,),
           ),
-
         ],
       )
 
     );
   }
+}
+
+class DisplayPicView extends StatelessWidget{
+  String imagePath;
+  DisplayPicView(this.imagePath){}
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      imagePath != null ? Container(
+        color: Colors.red,
+        child: Image.file(File(imagePath))
+      ) : Container(child:Text('None'));
+  }
+
 }
