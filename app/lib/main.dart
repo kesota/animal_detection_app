@@ -1,6 +1,7 @@
+import 'package:app/view/newcamera.dart';
 import 'package:app/view/title_page.dart';
-import 'package:app/view_model/camera_view.dart';
-import 'package:app/view_model/suggested_camera_view.dart';
+import 'package:app/view/camera_view.dart';
+import 'package:app/view/suggested_camera_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +18,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // This widget is the root of your application.
+      initialRoute:  '/',
+      routes: {
+        '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        '/title': (context) => TitleView(),
+        '/camera': (context) => CameraView(),
+        '/suggested': (context) => SuggestedView(),
+        '/newcamera': (context) => NewCameraView(),
+
+      },
     );
   }
 }
@@ -40,36 +49,26 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => TitleView()));
-                print('Title Page is pushed');
-              },
-              child: const Text('move to title page'),),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => CameraView()));
-                print('Camera Page is pushed');
-              },
-              child: const Text('move to Camera page'),),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SuggestedView()));
-                print('Suggested Camera Page is pushed');
-              },
-              child: const Text('move to Suggested page'),),
-
+            _moveToPage('/title', 'Title Page is pushed', 'Move to Title'),
+            _moveToPage('/camera', 'Camera Page is pushed', 'Move to Camera'),
+            _moveToPage('/suggested', 'Suggested Page is pushed',
+                'Move to Suggested'),
+            _moveToPage('/newcamera', 'newcamera Page is pushed',
+                'Move to newcamera'),
           ]
         ),
       ),
     );
+  }
+  Widget _moveToPage(String route, String log, String text){
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pushNamed(route);
+        print(log);
+      },
+      child: Text(text),);
   }
 }
