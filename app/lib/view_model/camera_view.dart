@@ -27,7 +27,10 @@ class CameraView extends StatelessWidget{
               Container(
                 width: 100,
                 height: 175,
-                color: Colors.blue,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                 child: const Text('お知らせ',
                   style: TextStyle(),)
               ),
@@ -35,7 +38,10 @@ class CameraView extends StatelessWidget{
               Container(
                   width: 100,
                   height: 175,
-                  color: Colors.blue,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
                   child: const Text('お知らせ',
                     style: TextStyle(),)
               ),
@@ -43,7 +49,10 @@ class CameraView extends StatelessWidget{
               Container(
                   width: 100,
                   height: 175,
-                  color: Colors.blue,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10)
+                  ),
                   child: const Text('お知らせ',
                     style: TextStyle(),)
               ),

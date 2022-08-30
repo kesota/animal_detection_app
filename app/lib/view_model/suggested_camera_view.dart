@@ -29,7 +29,10 @@ class SuggestedView extends StatelessWidget{
                 Container(
                     width: 100,
                     height: 185,
-                    color: Colors.lightBlueAccent,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(10)
+                    ),
                     child: const Text('お知らせ',
                       style: TextStyle(fontSize: 20),)
                 ),
@@ -37,16 +40,20 @@ class SuggestedView extends StatelessWidget{
                 Container(
                     width: 100,
                     height: 185,
-                    color: Colors.lightBlueAccent,
-                    child: const Text('図鑑',
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(10)
+                    ),                    child: const Text('図鑑',
                       style: TextStyle(fontSize: 20),)
                 ),
                 const Padding(padding: EdgeInsets.only(left:10)),
                 Container(
                     width: 100,
                     height: 185,
-                    color: Colors.lightBlueAccent,
-                    child: const Text('設定',
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(10)
+                    ),                    child: const Text('設定',
                       style: TextStyle(fontSize: 20),)
                 ),
                 const Padding(padding: EdgeInsets.only(left:10)),
