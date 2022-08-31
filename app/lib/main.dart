@@ -1,4 +1,5 @@
 import 'package:app/view/newcamera.dart';
+import 'package:app/view/picture_display_view.dart';
 import 'package:app/view/title_page.dart';
 import 'package:app/view/camera_view.dart';
 import 'package:app/view/suggested_camera_view.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/camera': (context) => CameraView(),
         '/suggested': (context) => SuggestedView(),
         '/newcamera': (context) => NewCameraView(camera: camera),
+        '/newcamera/photo':(context) => PictureDisplayView(''),
 
       },
     );

@@ -1,38 +1,35 @@
 
-
-import 'dart:io';
-
+import 'package:app/view/picture_display_view.dart';
+import 'package:app/view_model/newcamera_view_model.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class NewCameraView extends StatefulWidget{
-  NewCameraView({Key? key, required this.camera}) : super(key:key);
+  const NewCameraView({Key? key, required this.camera}) : super(key:key);
   final List<CameraDescription> camera;
   @override
   State<NewCameraView> createState() => _NewCameraState();
 }
 
 class _NewCameraState extends State<NewCameraView>{
-  late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
-  XFile image = XFile('');
+  final NewCameraViewModel _viewModel = NewCameraViewModel();
 
   @override
   void initState(){
     super.initState();
-    _controller = CameraController(
+    _viewModel.controller = CameraController(
       // Get a specific camera from the list of available cameras.
       widget.camera[0],
       // Define the resolution to use.
       ResolutionPreset.medium,
     );
-    _initializeControllerFuture = _controller.initialize();
+    _viewModel.initializeControllerFuture = _viewModel.controller.initialize();
   }
 
   @override
   void dispose() {
     // Dispose of the controller when the widget is disposed.
-    _controller.dispose();
+    _viewModel.controller.dispose();
     super.dispose();
   }
 
@@ -43,51 +40,34 @@ class _NewCameraState extends State<NewCameraView>{
       body:Column(
         children: [
           FutureBuilder<void>(
-              future: _initializeControllerFuture,
+              future: _viewModel.initializeControllerFuture,
               builder:  (BuildContext context, snapshot){
                 if (snapshot.connectionState == ConnectionState.done){
                   return Column(
                       children:[
                         const Padding(padding: EdgeInsets.all(40),),
-                        CameraPreview(_controller),
+                        CameraPreview(_viewModel.controller),
                    ]);
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }
               }
           ),
-          FloatingActionButton(onPressed: ()async{
-            try{
-              await _initializeControllerFuture;
-              image = await _controller.takePicture();
-              print('Successfully Captured');
+          FloatingActionButton(
+            onPressed: ()async{
 
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>DisplayPicView(image.path)));
-            }catch(error){
-              print(error);
-            }
-          }, 
+              await _viewModel.takePicture();
+              // Push to Displaying Page
+              Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PictureDisplayView(_viewModel.image.path)));
+              },
             child: const Icon(Icons.camera_alt,),
           ),
         ],
       )
-
     );
   }
 }
 
-class DisplayPicView extends StatelessWidget{
-  String imagePath;
-  DisplayPicView(this.imagePath){}
-
-  @override
-  Widget build(BuildContext context) {
-    return
-      imagePath != null ? Container(
-        color: Colors.red,
-        child: Image.file(File(imagePath))
-      ) : Container(child:Text('None'));
-  }
-
-}
