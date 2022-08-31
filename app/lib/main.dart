@@ -1,3 +1,4 @@
+import 'package:app/util/logger_manager.dart';
 import 'package:app/view/newcamera.dart';
 import 'package:app/view/picture_display_view.dart';
 import 'package:app/view/title_page.dart';
@@ -74,10 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   Widget _moveToPage(String route, String log, String text){
+    final LoggerManager _logger = LoggerManager();
     return TextButton(
       onPressed: () {
         Navigator.of(context).pushNamed(route);
-        print(log);
+        _logger.d(log);
       },
       child: Text(text),);
   }

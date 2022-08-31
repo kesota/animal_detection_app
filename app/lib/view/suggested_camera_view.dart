@@ -17,7 +17,7 @@ class SuggestedView extends StatelessWidget{
                 onPressed: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => SuggestedView()));
-                print('Suggested Camera Page is pushed');},
+                  },
                 icon: Icon(Icons.camera_alt, size: 150,),)
             ),
             Container(child: Text('カメラを使う')),
