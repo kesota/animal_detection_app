@@ -21,7 +21,7 @@ class _NewCameraState extends State<NewCameraView>{
       // Get a specific camera from the list of available cameras.
       widget.camera[0],
       // Define the resolution to use.
-      ResolutionPreset.medium,
+      ResolutionPreset.max,
     );
     _viewModel.initializeControllerFuture = _viewModel.controller.initialize();
   }
@@ -45,8 +45,26 @@ class _NewCameraState extends State<NewCameraView>{
                 if (snapshot.connectionState == ConnectionState.done){
                   return Column(
                       children:[
-                        const Padding(padding: EdgeInsets.all(40),),
-                        CameraPreview(_viewModel.controller),
+                        CameraPreview(
+                            _viewModel.controller,
+                            child: Row(
+                              children: [
+                                Padding(padding: EdgeInsets.all(2.5)),
+                                Container(
+                                  width: 50,
+                                  height: 100,
+                                  decoration: _boxBorder(),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.home,),
+                                      Icon(Icons.group),
+                                      Icon(Icons.menu_book_sharp)
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          )),
                    ]);
                 } else {
                   return const Center(child: CircularProgressIndicator());
@@ -67,6 +85,31 @@ class _NewCameraState extends State<NewCameraView>{
           ),
         ],
       )
+    );
+  }
+
+
+
+  Decoration _boxBorder(){
+    return const BoxDecoration(
+      border: Border(
+        left: BorderSide(
+          color: Colors.black,
+          width: 2,
+        ),
+        top: BorderSide(
+          color: Colors.black,
+          width: 2,
+        ),
+        right: BorderSide(
+          color: Colors.black,
+          width: 2,
+        ),
+        bottom: BorderSide(
+          color: Colors.black,
+          width: 2,
+        ),
+      ),
     );
   }
 }
