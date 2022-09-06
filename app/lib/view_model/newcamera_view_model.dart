@@ -13,11 +13,12 @@ class NewCameraViewModel{
   final LoggerManager _logger = LoggerManager();
 
   // Method: Take a picture and store taken picture to image
-  Future<void> takePicture() async{
+  Future<XFile> takePicture() async{
     try {
-      image = await _model.takePicture(controller, initializeControllerFuture);
+      return await _model.takePicture(controller, initializeControllerFuture);
     } catch (e) {
       _logger.e(e);
+      return XFile('');
     }
   }
 }

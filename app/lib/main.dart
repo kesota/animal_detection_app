@@ -39,8 +39,9 @@ class MyApp extends StatelessWidget {
             '/title': (context) => TitleView(),
             '/camera': (context) => CameraView(),
             '/suggested': (context) => SuggestedView(),
-            '/newcamera': (context) => NewCameraView(camera: camera),
-            '/newcamera/photo':(context) => PictureDisplayView(''),
+            '/newcamera': (context) => NewCameraView(camera: camera, flgChanger: 1,),
+            '/newcamera/suggest': (context) => NewCameraView(camera: camera, flgChanger: 100),
+            '/newcamera/photo':(context) => PictureDisplayView(XFile('')),
             '/Test': (context) => TestView(),
 
           },
@@ -75,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Move to Suggested'),
                   _moveToPage('/newcamera', 'newcamera Page is pushed',
                       'Move to newcamera'),
-
+                  _moveToPage('/newcamera/suggest', 'second camera Page is pushed',
+                      'Move to suggested camera'),
                   _moveToPage('/Test', 'Test page is pushed', 'Try Change Notifier')
 
                 ]
