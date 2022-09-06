@@ -1,8 +1,10 @@
 
+import 'package:app/util/camera_notifier.dart';
 import 'package:app/view/picture_display_view.dart';
 import 'package:app/view_model/newcamera_view_model.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NewCameraView extends StatefulWidget{
   const NewCameraView({Key? key, required this.camera}) : super(key:key);
@@ -49,14 +51,14 @@ class _NewCameraState extends State<NewCameraView>{
                             _viewModel.controller,
                             child: Row(
                               children: [
-                                Padding(padding: EdgeInsets.all(2.5)),
+                                const Padding(padding: EdgeInsets.all(2.5)),
                                 Container(
                                   width: 50,
                                   height: 100,
                                   decoration: _boxBorder(),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       Icon(Icons.home,),
                                       Icon(Icons.group),
                                       Icon(Icons.menu_book_sharp)
