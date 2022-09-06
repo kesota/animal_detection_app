@@ -1,5 +1,6 @@
 import 'package:app/util/camera_notifier.dart';
 import 'package:app/util/logger_manager.dart';
+import 'package:app/view/animal_detail.dart';
 import 'package:app/view/newcamera.dart';
 import 'package:app/view/picture_display_view.dart';
 import 'package:app/view/test.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
             '/newcamera/suggest': (context) => NewCameraView(camera: camera, flgChanger: 100),
             '/newcamera/photo':(context) => PictureDisplayView(XFile('')),
             '/Test': (context) => TestView(),
+            '/animalDetail':(context) => AnimalDetailView(name: '', type: '', detail1: '', detail2: '',),
 
           },
         ),
@@ -78,7 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Move to newcamera'),
                   _moveToPage('/newcamera/suggest', 'second camera Page is pushed',
                       'Move to suggested camera'),
-                  _moveToPage('/Test', 'Test page is pushed', 'Try Change Notifier')
+                  _moveToPage('/Test', 'Test page is pushed', 'Try Change Notifier'),
+                  _moveToPageParam('/animalDetail', 'Gorilla',['Gorilla', 'ゴリラ科ゴリラ目',
+                    '草加在住。　aaaaaaaaaaaaaaa。 testestestestestestest',
+                    'ドラミングはコミュニケーションツール。動物園でドラミングされたら、怒っているかも！ testestestestestestestestestes'] ),
+                  _moveToPageParam('/animalDetail', 'Kon', ['Kon', '人目',
+                  '草加在住。フェスで頻繁目撃されているaaaaaaaaaaaaaaa。 testestestestestestest',
+                    'エレキギターを引き連れ東京の夜の街を練り歩く事を趣味にしている。夜更かししがち。 testestestestestestestestestes'])
 
                 ]
             ),
@@ -91,6 +99,20 @@ class _MyHomePageState extends State<MyHomePage> {
       onPressed: () {
         Navigator.of(context).pushNamed(route);
         _logger.d(log);
+      },
+      child: Text(text),);
+  }
+  Widget _moveToPageParam(String route, String text, List<String> animalInfo){
+    final LoggerManager _logger = LoggerManager();
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) =>
+                    AnimalDetailView(name: animalInfo[0], type: animalInfo[1],
+                      detail1: animalInfo[2], detail2: animalInfo[3]
+                    )));
+        _logger.d(text);
       },
       child: Text(text),);
   }

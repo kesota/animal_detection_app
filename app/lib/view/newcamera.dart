@@ -84,11 +84,15 @@ class _NewCameraState extends State<NewCameraView>{
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                      Expanded(
-                       child:  model.picturesList.isNotEmpty ? SizedBox(
-                           width: 100, 
-                           height: 100, 
-                           child: Image.file(File(model.picturesList.last.path))
-                       ) 
+                       child:  model.picturesList.isNotEmpty ? IconButton(
+                           iconSize: 60,
+                           onPressed: (){
+                             Navigator.of(context).push(
+                                 MaterialPageRoute(
+                                     builder: (context) => LibraryView()));
+                             },
+                           icon: Image.file(File(model.picturesList.last.path),)
+                       )
                            : Container(),),
                       Expanded(child: FloatingActionButton(
                         onPressed: () async {
@@ -104,7 +108,7 @@ class _NewCameraState extends State<NewCameraView>{
                         },
                         child: const Icon(Icons.camera_alt,),
                       )),
-                      Expanded(child: SizedBox())
+                      const Expanded(child: SizedBox())
                     ],
                   )
                 ],
