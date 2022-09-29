@@ -23,7 +23,8 @@ class _TestView extends State<TestView>{
                 ),
                 TextButton(
                     onPressed: (){model.changeFruit('newFruit');},
-                    child:Text('Try reflect the changes?'))
+                    child: const Text('Try reflect the changes?')
+                )
               ],
             ),
           )
