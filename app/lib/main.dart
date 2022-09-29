@@ -72,9 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   _moveToPage('/title', 'Title Page is pushed', 'Move to Title'),
                   _moveToPage('/newcamera', 'newcamera Page is pushed',
-                      'Move to Camera with Library'),
+                      'Move to Camera'),
                   _moveToPage('/newcamera/suggest', 'second camera Page is pushed',
-                      'Move to suggested camera'),
+                      'Move to suggested camera with Library'),
                   _moveToPage('/Test', 'Test page is pushed', 'Try Change Notifier'),
                   _moveToPage('/animalGuide', 'Animal Guide',
                       '図鑑ページ'),
