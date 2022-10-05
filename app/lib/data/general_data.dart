@@ -8,6 +8,8 @@ class GeneralData{
   }
   GeneralData._internal();
 
+  int necessaryInfoLength = 4;
+
   // Data Format: [Bool 発見済みフラッグ, String 分類,
   //               String 分布, String 雑学]
   Map<String, List> animalDetail = {
@@ -42,9 +44,4 @@ class GeneralData{
     'test' : [true, 'a', 'a', 'a'],
     'test_not_enough_case': [true]
   };
-
-
-  void update(String deletedKey){
-    animalDetail.remove(deletedKey);
-  }
 }

@@ -10,5 +10,4 @@ class LoggerManager extends Logger{
     return _instance;
   }
   LoggerManager._internal();
-
 }

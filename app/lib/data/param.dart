@@ -8,6 +8,11 @@ extension Margin on Res{
   static const EdgeInsets leftPadding = EdgeInsets.all(10);
   static const EdgeInsets betweenTextTitle = EdgeInsets.all(5);
   static const EdgeInsets afterTitle = EdgeInsets.all(15);
+  static const EdgeInsets detailInBetween = EdgeInsets.all(15);
+  static const EdgeInsets animalTextMargin = EdgeInsets.only(left:2.5, right: 2.5);
+  static const EdgeInsets animalBetween = EdgeInsets.all(2);
+  static const EdgeInsets animalBetween2 = EdgeInsets.all(5);
+
 }
 
 extension FontStyle on Res{
@@ -20,4 +25,21 @@ extension FontStyle on Res{
 extension DefaultText on Res{
   static const String mainHabitat = '＊　主な生息地';
   static const String mainAttribution = '＊　主な生態';
+}
+
+
+extension WidgetParm on Res{
+  // Width
+  static const  double detailPicWidth = 300;
+  static const double animalBoxWidth = 125;
+  static const double animalPicWidth = 110;
+  static const double animalTextWidth = 90;
+
+
+  // Height
+  static const double detailPicHeight = 175;
+  static const double animalBoxHeight = 125;
+  static const double animalPicHeight = 90;
+  static const double animalTextHeight = 23;
+
 }
