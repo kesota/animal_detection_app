@@ -1,3 +1,4 @@
+import 'package:app/data/animal_notifier.dart';
 import 'package:app/util/camera_notifier.dart';
 import 'package:app/util/logger_manager.dart';
 import 'package:app/view/animal_detail.dart';
@@ -25,8 +26,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => CameraNotifier(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AnimalNotifier(),),
+        ChangeNotifierProvider(
+          create: (context) => CameraNotifier(),)
+      ],
         child: MaterialApp(
           title: 'Sample App',
           theme: ThemeData(

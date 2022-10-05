@@ -1,7 +1,7 @@
 
 
 
-import 'package:app/data/animal_detail.dart';
+import 'package:app/data/general_data.dart';
 import 'package:app/model/animal_guide_model.dart';
 
 class AnimalGuideViewModel{
@@ -13,4 +13,7 @@ class AnimalGuideViewModel{
     return model.covertList(data.animalDetail.keys.toList());
   }
 
+  void update(String deletedKey){
+    data.update(deletedKey);
+  }
 }

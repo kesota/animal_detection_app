@@ -20,7 +20,8 @@ class AnimalDetailView extends StatelessWidget{
         backgroundColor: Colors.white12,
         elevation: 0,
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
           children:[
             const Padding(padding: Margin.animalPagePadding1),
             animalTitle(name, FontStyle.name, Margin.leftPadding),
@@ -28,7 +29,10 @@ class AnimalDetailView extends StatelessWidget{
             const Padding(padding: Margin.afterTitle),
             // ToDo: replace this container to selected photos
             Container(
-              child: Icon(Icons.animation, size: 100),
+              width: 300,
+              height: 175,
+              child: Icon(Icons.animation, size: 150),
+              decoration: BoxDecoration(border: Border.all(color: Colors.red)),
             ),
             const Padding(padding: Margin.afterTitle),
             animalTitle(DefaultText.mainHabitat, FontStyle.subtitle, Margin.leftPadding),
@@ -39,14 +43,18 @@ class AnimalDetailView extends StatelessWidget{
             const Padding(padding: Margin.betweenTextTitle),
             detailInfo(detail2, FontStyle.detail, Margin.leftPadding),
           ],
-        )
+        ),
+      )
     );
   }
   Widget animalTitle(String info, TextStyle style, EdgeInsets margin){
     return Row(
       children: [
         Padding(padding: margin),
-        Flexible(child: Text(info, style: style)),
+        Flexible(
+          child: FittedBox(
+            child: Text(info, style: style),fit: BoxFit.fitWidth,),),
+        Padding(padding: margin)
       ],);
   }
   Widget detailInfo(String info, TextStyle style, EdgeInsets margin){
