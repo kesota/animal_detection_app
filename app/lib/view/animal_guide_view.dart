@@ -134,6 +134,8 @@ class _AnimalGuide extends State<AnimalGuide>{
                                 detail1: model.data.animalDetail[animalName]![2],
                                 detail2: model.data.animalDetail[animalName]![3]
                             )));
+                  } else{
+                    _dialog(model.getErrorMessage(animalName));
                   }
                 }
                 ),
@@ -159,6 +161,26 @@ class _AnimalGuide extends State<AnimalGuide>{
           ),
         ),
       ],
+    );
+  }
+
+  Future<String?> _dialog(List<String> _message){
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(_message[0]),
+        content: Text(_message[1]),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, '戻る'),
+            child: const Text('戻る'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
     );
   }
 }

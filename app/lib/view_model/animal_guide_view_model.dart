@@ -11,4 +11,9 @@ class AnimalGuideViewModel{
   List<List<String>> getAnimalNames(){
     return model.covertList(data.animalDetail.keys.toList());
   }
+
+  List<String> getErrorMessage(String animalKey){
+   List<String> _error = model.errorMessage(animalKey, data);
+    return _error;
+  }
 }

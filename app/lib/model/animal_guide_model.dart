@@ -1,4 +1,7 @@
 
+import 'package:app/data/general_data.dart';
+import 'package:app/data/param.dart';
+
 class AnimalGuideModel{
 
   // Convert an map-keys into a list which can be used to display
@@ -16,5 +19,19 @@ class AnimalGuideModel{
       }
     }
     return displayList;
+  }
+
+  // Get an error message for a dialog
+  List<String> errorMessage(String animalKey, GeneralData data){
+    List<String> _error = [];
+    if (!data.animalDetail[animalKey]![0]){
+      _error.add(DefaultText.errorNotFoundTitle);
+      _error.add(DefaultText.errorNotFound);
+    } else if (data.animalDetail[animalKey]!.length <= data.necessaryInfoLength){
+      _error.add(DefaultText.errorTitle);
+      _error.add(DefaultText.errorNecessaryInfoNotFound);
+    }
+    return _error.isEmpty
+        ? [DefaultText.errorTitle, DefaultText.errorDeDefault] : _error;
   }
 }
