@@ -6,6 +6,7 @@ import 'package:camera/camera.dart';
 class NewCameraModel{
   final LoggerManager logger = LoggerManager();
 
+  // Take picture, and return photos
   Future<XFile> takePicture(CameraController _controller,
       Future<void> _initializeControllerFuture) async {
     try {

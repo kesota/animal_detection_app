@@ -8,7 +8,6 @@ class AnimalGuideViewModel{
   final AnimalGuideModel model = AnimalGuideModel();
   final GeneralData data = GeneralData();
 
-
   List<List<String>> getAnimalNames(){
     return model.covertList(data.animalDetail.keys.toList());
   }

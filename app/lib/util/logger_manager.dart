@@ -1,7 +1,6 @@
 
 import 'package:logger/logger.dart';
 
-
 class LoggerManager extends Logger{
 
   // Factory Constructor: Prevent this class from making multiple instances
@@ -10,5 +9,4 @@ class LoggerManager extends Logger{
     return _instance;
   }
   LoggerManager._internal();
-
 }

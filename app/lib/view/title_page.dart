@@ -25,10 +25,6 @@ class TitleView extends StatelessWidget{
           )
         ],
       )
-
     );
   }
-
-
-
 }
