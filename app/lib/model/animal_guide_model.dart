@@ -1,6 +1,8 @@
 
 import 'package:app/data/general_data.dart';
 import 'package:app/data/param.dart';
+import 'package:app/util/logger_manager.dart';
+import 'package:logger/logger.dart';
 
 class AnimalGuideModel{
 
@@ -33,5 +35,13 @@ class AnimalGuideModel{
     }
     return _error.isEmpty
         ? [DefaultText.errorTitle, DefaultText.errorDeDefault] : _error;
+  }
+
+  // Check whether the animal is found
+  bool displayCondition(String animalKey, GeneralData data){
+    // If animal is found AND it has necessary info
+    return data.animalDetail[animalKey]![0] == true &&
+        data.animalDetail[animalKey]!.length >= data.necessaryInfoLength
+        ?  true : false;
   }
 }
