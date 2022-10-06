@@ -25,6 +25,11 @@ extension FontStyle on Res{
 extension DefaultText on Res{
   static const String mainHabitat = '＊　主な生息地';
   static const String mainAttribution = '＊　主な生態';
+  static const String errorTitle = 'エラー:';
+  static const String errorDeDefault = 'システムエラー';
+  static const String errorNotFoundTitle = '探検開始だ～';
+  static const String errorNotFound = '見つかってない動物だよ？\n探しに行こう！';
+  static const String errorNecessaryInfoNotFound = '情報取得に失敗しました。\nアプリをアップデートしてください。';
 }
 
 
