@@ -11,8 +11,4 @@ class AnimalGuideViewModel{
   List<List<String>> getAnimalNames(){
     return model.covertList(data.animalDetail.keys.toList());
   }
-
-  void update(String deletedKey){
-    data.update(deletedKey);
-  }
 }

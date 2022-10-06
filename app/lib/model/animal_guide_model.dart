@@ -1,8 +1,7 @@
 
 class AnimalGuideModel{
 
-
-  // Convert Animal Map Keys into a list which can be used to display
+  // Convert an map-keys into a list which can be used to display
   List<List<String>> covertList(List<String> animalList){
     List<List<String>> displayList = [];
     List<String> _temp= [];
@@ -16,7 +15,6 @@ class AnimalGuideModel{
         displayList.add(_temp);
       }
     }
-
     return displayList;
   }
 }

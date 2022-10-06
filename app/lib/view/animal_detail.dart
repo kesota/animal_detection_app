@@ -29,8 +29,8 @@ class AnimalDetailView extends StatelessWidget{
             const Padding(padding: Margin.afterTitle),
             // ToDo: replace this container to selected photos
             Container(
-              width: 300,
-              height: 175,
+              width: WidgetParm.detailPicWidth,
+              height: WidgetParm.detailPicWidth,
               child: Icon(Icons.animation, size: 150),
               decoration: BoxDecoration(border: Border.all(color: Colors.red)),
             ),
@@ -38,7 +38,7 @@ class AnimalDetailView extends StatelessWidget{
             animalTitle(DefaultText.mainHabitat, FontStyle.subtitle, Margin.leftPadding),
             const Padding(padding: Margin.betweenTextTitle),
             detailInfo(detail1, FontStyle.detail, Margin.leftPadding),
-            const Padding(padding: EdgeInsets.all(15),),
+            const Padding(padding: Margin.detailInBetween),
             animalTitle(DefaultText.mainAttribution, FontStyle.subtitle, Margin.leftPadding),
             const Padding(padding: Margin.betweenTextTitle),
             detailInfo(detail2, FontStyle.detail, Margin.leftPadding),

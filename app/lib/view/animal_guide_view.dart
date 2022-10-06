@@ -1,6 +1,7 @@
 
 
 import 'package:app/data/animal_notifier.dart';
+import 'package:app/data/param.dart';
 import 'package:app/util/logger_manager.dart';
 import 'package:app/view/animal_detail.dart';
 import 'package:app/view_model/animal_guide_view_model.dart';
@@ -24,12 +25,6 @@ class _AnimalGuide extends State<AnimalGuide>{
     animalList = model.getAnimalNames();
     logger.d(animalList);
   }
-  Future<void> _refresh() async {
-    setState(() {
-      // To implement this, changenotifier
-      model.update(model.data.animalDetail.keys.last);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +32,11 @@ class _AnimalGuide extends State<AnimalGuide>{
       builder:(context, notifier, child){
         return Scaffold(
             appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0,),
-            body: RefreshIndicator(
-              onRefresh: () => _refresh(),
-              child: Center(
-                child: SingleChildScrollView(
+            body: SingleChildScrollView(
+                child: Center(
                   child: Column(
                     children: [
+                      // ToDo: Replace with the actual searching function
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -58,14 +52,14 @@ class _AnimalGuide extends State<AnimalGuide>{
                             color: Colors.black,
                           )
                         ],),
-                      Padding(padding: EdgeInsets.all(5)),
+                      const Padding(padding: Margin.animalBetween2),
                       Container(
                           width: MediaQuery.of(context).size.width * 0.95,
                           height: MediaQuery.of(context).size.height * 0.75,
                           color: Colors.lightBlue[100],
                           child: Column(
                             children: [
-                              Padding(padding: EdgeInsets.all(2)),
+                              const Padding(padding: Margin.animalBetween),
                               Container(
                                   width: MediaQuery.of(context).size.width * 0.95,
                                   height: MediaQuery.of(context).size.height * 0.74,
@@ -86,7 +80,6 @@ class _AnimalGuide extends State<AnimalGuide>{
                   ),
                 ),
               ),
-            )
         );
     }
     );
@@ -94,15 +87,15 @@ class _AnimalGuide extends State<AnimalGuide>{
 
   Widget animalRowing(List<String> animalNames, AnimalNotifier _model){
     return SizedBox(
-      height: 125,
+      height: WidgetParm.animalBoxHeight,
       child:  ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: animalNames.length,
           itemBuilder: (BuildContext context, int index){
-            return Container(
-              width: 125,
-              height: 125,
+            return SizedBox(
+              width: WidgetParm.animalBoxWidth,
+              height: WidgetParm.animalBoxHeight,
               child: Center(
                 child: eachAnimal(animalNames[index], _model ),
               ),
@@ -113,16 +106,16 @@ class _AnimalGuide extends State<AnimalGuide>{
   }
 
   Widget eachAnimal(String animalName, AnimalNotifier _model){
-    // ToDo: Replace 2nd Icon with Photos
+    // ToDo: Replace 1st Icon with Photos
     final Icon icon = model.data.animalDetail[animalName]![0]
-        ?  Icon(Icons.check) : const Icon(Icons.question_mark);
+        ?  const Icon(Icons.check) : const Icon(Icons.question_mark);
 
     return Column(
       children: [
-        Padding(padding: EdgeInsets.all(2)),
+        const Padding(padding: Margin.animalBetween),
         Container(
-          width: 110,
-          height: 90,
+          width: WidgetParm.animalPicWidth,
+          height: WidgetParm.animalPicHeight,
           decoration: BoxDecoration(border: Border.all(color: Colors.red),),
           child: Center(
             child: IconButton(
@@ -130,7 +123,8 @@ class _AnimalGuide extends State<AnimalGuide>{
                 onPressed: (){
                   logger.d(animalName);
                   if (model.data.animalDetail[animalName]![0] == true &&
-                      model.data.animalDetail[animalName]!.length >= 4
+                      model.data.animalDetail[animalName]!.length >=
+                          model.data.necessaryInfoLength
                   ){
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
@@ -145,23 +139,23 @@ class _AnimalGuide extends State<AnimalGuide>{
                 ),
           ),
         ),
-        Padding(padding: EdgeInsets.all(2)),
+        const Padding(padding: Margin.animalBetween),
         Container(
-          width: 90,
-          height: 23,
-          padding: EdgeInsets.only(left:2.5, right: 2.5),
+          width: WidgetParm.animalTextWidth,
+          height: WidgetParm.animalTextHeight,
+          padding: Margin.animalTextMargin,
           decoration: BoxDecoration(border: Border.all(color: Colors.red),),
           child:  Center(
-            // ToDo: Make sure FittedBox works, maybe we can get rid of button function 
+            // ToDo: Make sure FittedBox works, maybe we can get rid of button function
               child: TextButton(
-              child: FittedBox(
-              child: Text(animalName),
-              ),
-              onPressed: (){
-                logger.d('Test');
-                _model.update(animalName);
-                },
-            )
+                child: FittedBox(
+                  child: Text(animalName),
+                ),
+                onPressed: (){
+                  // debug: just to see whether the notifier works
+                  _model.update(animalName);
+                  },
+              )
           ),
         ),
       ],
