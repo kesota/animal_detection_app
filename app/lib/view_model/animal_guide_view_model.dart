@@ -16,4 +16,8 @@ class AnimalGuideViewModel{
    List<String> _error = model.errorMessage(animalKey, data);
     return _error;
   }
+
+  bool checkDisplayCondition(String animalKey){
+    return model.displayCondition(animalKey, data);
+  }
 }

@@ -122,9 +122,7 @@ class _AnimalGuide extends State<AnimalGuide>{
                 icon: icon,
                 onPressed: (){
                   logger.d(animalName);
-                  if (model.data.animalDetail[animalName]![0] == true &&
-                      model.data.animalDetail[animalName]!.length >=
-                          model.data.necessaryInfoLength
+                  if (model.checkDisplayCondition(animalName)
                   ){
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
@@ -137,8 +135,7 @@ class _AnimalGuide extends State<AnimalGuide>{
                   } else{
                     _dialog(model.getErrorMessage(animalName));
                   }
-                }
-                ),
+                }),
           ),
         ),
         const Padding(padding: Margin.animalBetween),
