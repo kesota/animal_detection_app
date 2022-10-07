@@ -163,9 +163,16 @@ class _AnimalGuide extends State<AnimalGuide>{
 
   Future<String?> _dialog(List<String> _message){
     return showDialog<String>(
+      barrierColor: Colors.lightBlueAccent[100]!.withOpacity(0.5),
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(_message[0]),
+        // ToDo: Once the design is fixed, change widgets below
+      title:
+          Container(
+            alignment: Alignment.topLeft,
+            child: Text(_message[0]),
+            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.5, color: Colors.black))),
+          ),
         content: Text(_message[1]),
         actions: <Widget>[
           TextButton(
@@ -177,6 +184,14 @@ class _AnimalGuide extends State<AnimalGuide>{
             child: const Text('OK'),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _dialog2(){
+    return Dialog(
+      child: Container(
+        child: Text('text'),
       ),
     );
   }
