@@ -1,3 +1,3 @@
 # animal_detection_app
 
-アプリ説明
+アプリ説明:
