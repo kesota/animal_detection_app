@@ -42,6 +42,6 @@ class GeneralData{
       '草加在住。フェスで頻繁目撃されているaaaaaaaaaaaaaaa。 testestestestestestest',
       '夜更かししがち。 testestestestestestestestestes'],
     'test' : [true, 'a', 'a', 'a'],
-    'test_not_enough_case': [true]
+    'test_not_enough_case': [false]
   };
 }
